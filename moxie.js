@@ -1,10 +1,9 @@
-import SkillData from './SkillData';
-import SkillIds from './SkillIds';
+import SkillData from 'gw2-data/SkillData';
+import SkillIds from 'gw2-dataa/SkillIds';
 import EIParser from './EIParser';
-import drawCastTimeline from './drawCastTimeline';
-import drawBuffTimeline from './drawBuffTimeline';
-import drawDpsGraph from './drawDpsGraph';
-import EasterEgg from './EasterEgg';
+import drawCastTimeline from 'ventaris-tablet/drawCastTimeline';
+import drawBuffTimeline from 'ventaris-tablet/drawBuffTimeline';
+import drawDpsGraph from 'ventaris-tablet/drawDpsGraph';
 
 const setupContainer = document.querySelector('.setup-container');
 setup();
@@ -60,7 +59,6 @@ async function setup() {
     setTimeout(function() {
       const reader = new FileReader();
       reader.onload = function(event) {
-        console.log('woot');
         let source = document.createElement('source');
         source.src = event.target.result;
         source.type = file.type;
@@ -209,7 +207,6 @@ async function displayLog(log) {
 
   function onChange(key) {
     return function(event) {
-      console.log('onchange', key, event, event.target);
       options[key] = event.target.checked;
       drawBoard(log, dimensions, options);
     };
@@ -257,8 +254,6 @@ async function displayLog(log) {
     scrollToLogTime((video.currentTime - options.videoOffset) * 1000 +
                     log.start);
   });
-
-  EasterEgg.attach();
 }
 
 function drawBoard(log, dimensions, options) {
@@ -287,7 +282,8 @@ function drawBoard(log, dimensions, options) {
 
   for (let playerId in log.casts) {
     const name = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    name.textContent = 'Uh';
+    // name.textContent = log.players[playerId].account.split('.')[0];
+    name.textContent = `Player ${playerId}`;
     name.setAttribute('x', 0);
     name.setAttribute('y', row * (railHeight + railPad) + railHeight / 2);
     name.classList.add('name');

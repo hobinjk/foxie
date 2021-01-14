@@ -248,7 +248,7 @@ input[type="file"] + label:hover,
   position: relative;
   overflow-x: scroll;
   width: 100%;
-  top: -24px;
+  top: 0;
 }
 
 .board-container.show-benchmark {
