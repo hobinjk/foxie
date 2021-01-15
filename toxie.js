@@ -256,6 +256,21 @@ async function displayLog(log) {
   });
 }
 
+function createDoubledTitle(textContent) {
+  const title = document.createElementNS('http://www.w3.org/2000/svg',
+                                         'title');
+  title.textContent = textContent;
+  const titleInner = document.createElementNS('http://www.w3.org/2000/svg',
+                                              'title');
+  titleInner.textContent = textContent;
+  const use = document.createElementNS('http://www.w3.org/2000/svg',
+                                       'use');
+  use.setAttribute('xlink:href', '#adjust-solid');
+  use.appendChild(titleInner);
+
+  return [title, use];
+}
+
 function drawBoard(log, dimensions, options) {
   const {railHeight, railPad} = dimensions;
 
@@ -281,13 +296,18 @@ function drawBoard(log, dimensions, options) {
   }
 
   for (let playerId in log.casts) {
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     const name = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    // name.textContent = log.players[playerId].account.split('.')[0];
-    name.textContent = `Player ${playerId}`;
+    const player = log.players[playerId];
+    const [title, use] = createDoubledTitle(player.account);
+    name.textContent = player.name;
     name.setAttribute('x', 0);
     name.setAttribute('y', row * (railHeight + railPad) + railHeight / 2);
     name.classList.add('name');
-    legend.appendChild(name);
+    g.appendChild(title);
+    g.appendChild(use);
+    g.appendChild(name);
+    legend.appendChild(g);
 
     drawCastTimeline(board, log, log.casts[playerId], row, dimensions);
     row += 1;
