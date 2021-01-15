@@ -294,8 +294,9 @@ function drawBoard(log, dimensions, options) {
   }
 
 
-  const buffCount = drawBuffTimeline(board, legend, log, row + 1, dimensions,
-                                     options.showBoringBuffs, false);
+  const buffCount = 0;
+  // drawBuffTimeline(board, legend, log, row + 1, dimensions,
+  //                                   options.showBoringBuffs, false);
 
   const rowCount = buffCount + 1 + row;
   board.style.height = rowCount * (railHeight + railPad) - railPad + 'px';
