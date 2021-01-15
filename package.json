@@ -1,19 +1,23 @@
 {
-  "name": "moxie-ui",
+  "name": "toxie-ui",
   "version": "0.0.1",
   "description": "",
-  "main": "moxie.js",
+  "main": "toxie.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "hobinjk@gmail.com",
   "license": "MIT",
   "devDependencies": {
-    "@wasm-tool/wasm-pack-plugin": "^0.2.7",
+    "babel-eslint": "^10.1.0",
     "copy-webpack-plugin": "^5.1.1",
+    "eslint": "^7.17.0",
     "express": "^4.17.1",
-    "text-encoding": "^0.7.0",
     "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.1"
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "gw2-data": "git+https://github.com/hobinjk/gw2-data.git",
+    "ventaris-tablet": "git+https://github.com/hobinjk/ventaris-tablet.git"
   }
 }
