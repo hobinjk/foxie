@@ -264,7 +264,7 @@ input[type="file"] + label:hover,
 }
 
 
-.cast.cancel {
+.cancel {
   opacity: 0.3;
 }
 
