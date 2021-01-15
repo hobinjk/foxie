@@ -251,10 +251,6 @@ input[type="file"] + label:hover,
   top: 0;
 }
 
-.board-container.show-benchmark {
-  top: 0;
-}
-
 .buff {
   opacity: 0.5;
   fill: #77f;
@@ -289,14 +285,10 @@ input[type="file"] + label:hover,
 
 .legend {
   position: absolute;
-  top: -24px;
+  top: 0px;
   left: 4px;
   pointer-events: none;
   z-index: 10;
-}
-
-.legend.show-benchmark {
-  top: 0;
 }
 
 .legend .name, .tooltip-explanation {
