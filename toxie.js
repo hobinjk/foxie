@@ -195,16 +195,15 @@ async function displayLog(log) {
 
   const options = {
     showDps: false,
-    showBoringBuffs: false,
-    videoOffset: 1.8,
-    castLabelType: 'icons',
+    sortByProfession: false,
+    showIcons: true,
   };
   const showDps = document.getElementById('show-dps');
   showDps.checked = options.showDps;
-  const showBoringBuffs = document.getElementById('show-boring-buffs');
-  showBoringBuffs.checked = options.showBoringBuffs;
-  const castLabelType = document.getElementById('cast-label-type');
-  castLabelType.value = options.castLabelType;
+  const sortByProfession = document.getElementById('sort-by-profession');
+  sortByProfession.checked = options.sortByProfession;
+  const showIcons = document.getElementById('show-icons');
+  showIcons.checked = options.showIcons;
 
   function onChange(key) {
     return function(event) {
@@ -213,10 +212,8 @@ async function displayLog(log) {
     };
   }
   showDps.addEventListener('change', onChange('showDps'));
-  showBoringBuffs.addEventListener('change', onChange('showBoringBuffs'));
-  castLabelType.addEventListener('change', function() {
-    options.castLabelType = castLabelType.value;
-  });
+  sortByProfession.addEventListener('change', onChange('sortByProfession'));
+  showIcons.addEventListener('change', onChange('showIcons'));
 
   drawBoard(log, dimensions, options);
 
@@ -272,6 +269,14 @@ function createDoubledTitle(textContent) {
   return [title, use];
 }
 
+function group(log, playerId) {
+  return log.players[playerId].group;
+}
+
+function profession(log, playerId) {
+  return log.players[playerId].profession;
+}
+
 function drawBoard(log, dimensions, options) {
   const {railHeight, railPad} = dimensions;
 
@@ -307,7 +312,18 @@ function drawBoard(log, dimensions, options) {
     row += 3;
   }
 
-  for (let playerId in log.casts) {
+  let playerIds = Object.keys(log.casts);
+  if (options.sortByProfession) {
+    playerIds.sort(function(a, b) {
+      return profession(log, a).localeCompare(profession(log, b));
+    });
+  } else {
+    playerIds.sort(function(a, b) {
+      return group(log, a) - group(log, b);
+    });
+  }
+
+  for (let playerId of playerIds) {
     const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     const name = document.createElementNS('http://www.w3.org/2000/svg', 'text');
     const player = log.players[playerId];
