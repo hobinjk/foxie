@@ -7,6 +7,8 @@ import drawDpsGraph from 'ventaris-tablet/drawDpsGraph';
 const setupContainer = document.querySelector('.setup-container');
 setup();
 
+const videoEnabled = false;
+
 async function setup() {
   const dpsReportText = document.querySelector('.dpsreport-text');
   const dpsReportSubmit = document.querySelector('.dpsreport-submit');
@@ -227,7 +229,7 @@ async function displayLog(log) {
         logX > boardContainer.scrollLeft + boardContainerRect.width) {
       boardContainer.scrollLeft = logX - boardContainerRect.width / 2;
     }
-    if (scrollVideo) {
+    if (scrollVideo && videoEnabled) {
       video.currentTime = (logTime - log.start) / 1000 + options.videoOffset;
     }
   }
