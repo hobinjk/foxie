@@ -2,10 +2,10 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: './toxie.js',
+  entry: './foxie.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'toxie.js',
+    filename: 'foxie.js',
   },
   plugins: [
     new CopyWebpackPlugin([{
