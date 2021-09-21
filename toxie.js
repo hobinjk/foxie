@@ -330,7 +330,7 @@ function drawBoard(log, dimensions, options) {
   // drawBuffTimeline(board, legend, log, row + 1, dimensions,
   //                                   options.showBoringBuffs, false);
 
-  const rowCount = buffCount + 1 + row;
+  const rowCount = buffCount + row;
   board.style.height = rowCount * (railHeight + railPad) - railPad + 'px';
   legend.style.height = rowCount * (railHeight + railPad) - railPad + 'px';
 
