@@ -337,7 +337,8 @@ function drawBoard(log, dimensions, options) {
     g.appendChild(name);
     legend.appendChild(g);
 
-    drawCastTimeline(board, log, log.casts[playerId], row, dimensions);
+    drawCastTimeline(board, log, log.casts[playerId], row, dimensions, null,
+                     options.showIcons ? 'icon' : 'name');
     row += 1;
   }
 
