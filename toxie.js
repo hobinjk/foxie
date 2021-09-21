@@ -15,7 +15,7 @@ async function setup() {
 
   function dpsReportListener() {
     let urlText = dpsReportText.value.trim();
-    if (!/^https:\/\/dps\.report\/[^/]+$/.test(urlText)) {
+    if (!/^https:\/\/(dps|wvw)\.report\/[^/]+$/.test(urlText)) {
       alert('Paste in format https://dps.report/Sosx-20180802-193036_cairn');
       return;
     }
