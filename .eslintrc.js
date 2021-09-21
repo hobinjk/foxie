@@ -1,6 +1,5 @@
 module.exports = {
   'plugins': [
-    'html'
   ],
   'env': {
     'browser': true,
@@ -8,7 +7,10 @@ module.exports = {
     'es6': true,
   },
   'extends': 'eslint:recommended',
-  'parser': 'babel-eslint',
+  parserOptions: {
+    sourceType: 'module',
+    ecmaVersion: 8,
+  },
   'rules': {
     'arrow-spacing': 'error',
     'block-scoped-var': 'error',
@@ -232,6 +234,7 @@ module.exports = {
       'error',
       'never'
     ],
+    'no-prototype-builtins': [0],
     'yoda': 'error'
   }
 };
