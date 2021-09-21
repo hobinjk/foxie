@@ -284,7 +284,18 @@ function drawBoard(log, dimensions, options) {
   let row = 0;
 
   if (options.showDps) {
-    drawDpsGraph(board, log, dimensions);
+    let targetDamage1S = [];
+    for (let player of log.players) {
+      let damage = player.damage1S[0];
+      for (let i = 0; i < damage.length; i++) {
+        if (i >= targetDamage1S.length) {
+          targetDamage1S.push(0);
+        }
+        targetDamage1S[i] += damage[i];
+      }
+    }
+    log.targetDamage1S = targetDamage1S;
+    drawDpsGraph(board, log, {targetDamage1S: []}, dimensions, true);
     const dpsGraphLabel = document.createElementNS('http://www.w3.org/2000/svg',
                                                    'text');
     dpsGraphLabel.textContent = 'Damage per 10s';
